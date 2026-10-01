@@ -12,9 +12,12 @@ public class ExpresorRegular
 
     }
     public static bool Evaluar(string userInput, TiposValidos tipo) {
+        if (string.IsNullOrEmpty(userInput))
+        {
+            return true;
+        }
         bool valido = false;
         string dato = "";
-        int acum = 0;
         switch (tipo) {
             case TiposValidos.Nombre:
                 valido = Regex.IsMatch(userInput, "^[A-Z][a-z]+( [A-Z][a-z]+)+$");

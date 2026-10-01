@@ -7,8 +7,7 @@ public partial class Form1 : Form
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-       // ExpresorRegular.Evaluar("4,206,967", TiposValidos.Salario);
-       // ExpresorRegular.Evaluar("asde-123345", TiposValidos.RFC);
+
     }
     
     private void txt_Edad_TextChanged(object sender, EventArgs e)
@@ -38,28 +37,19 @@ public partial class Form1 : Form
 
     private void btn_Validar_Click(object sender, EventArgs e)
     {
-        if(!ExpresorRegular.Evaluar(txt_Name.Text, TiposValidos.Nombre)){
-            return;
-        } else if (!ExpresorRegular.Evaluar(txt_Edad.Text, TiposValidos.Edad))
+        bool n = ExpresorRegular.Evaluar(txt_Name.Text, TiposValidos.Nombre);
+        bool ed = ExpresorRegular.Evaluar(txt_Edad.Text, TiposValidos.Edad);
+        bool t = ExpresorRegular.Evaluar(txt_Num.Text, TiposValidos.Telefono);
+        bool s = ExpresorRegular.Evaluar(txt_Salario.Text, TiposValidos.Salario);
+        bool rfc = ExpresorRegular.Evaluar(txt_RFC.Text, TiposValidos.RFC);
+        bool c = ExpresorRegular.Evaluar(txt_Correo.Text, TiposValidos.Correo);
+        if(txt_Name.Text == "" && txt_Edad.Text == "" && txt_Num.Text == "" && txt_Salario.Text == "" && txt_RFC.Text == "" && txt_Correo.Text == "")
         {
-            return;
+            MessageBox.Show("Por favor, ingrese datos en los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-        else if (!ExpresorRegular.Evaluar(txt_Num.Text, TiposValidos.Telefono))
+        else if (n && ed && t && s && rfc && c)
         {
-            return;
+            MessageBox.Show("Las campos ingresados son validos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        else if (!ExpresorRegular.Evaluar(txt_Salario.Text, TiposValidos.Salario))
-        {
-            return;
-        }
-        else if (!ExpresorRegular.Evaluar(txt_RFC.Text, TiposValidos.RFC))
-        {
-            return;
-        }
-        else if (!ExpresorRegular.Evaluar(txt_Correo.Text, TiposValidos.Correo))
-        {
-            return;
-        }
-        MessageBox.Show("Todos los campos son válidos.", "Validación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 }
